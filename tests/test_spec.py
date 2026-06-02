@@ -22,3 +22,20 @@ def test_to_dict_drops_none_interactive():
 def test_all_elements_importable():
     for cls in (Trace, ReferenceLine, Zone, Marker, Axis, Annotation, ChartSpec):
         assert cls is not None
+
+
+def test_role_field_roundtrips():
+    spec = ChartSpec()
+    spec.add_trace([1], [2], role="data")
+    spec.add_reference_line(10.0, role="control_limit")
+    spec.add_zone(1.0, 2.0, role="sigma_zone")
+    spec.add_marker([0], role="out_of_control")
+    d = spec.to_dict()
+    assert d["traces"][0]["role"] == "data"
+    assert d["reference_lines"][0]["role"] == "control_limit"
+    assert d["zones"][0]["role"] == "sigma_zone"
+    assert d["markers"][0]["role"] == "out_of_control"
+
+
+def test_role_defaults_empty():
+    assert ChartSpec(traces=[Trace(x=[1], y=[2])]).to_dict()["traces"][0]["role"] == ""

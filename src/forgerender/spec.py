@@ -35,6 +35,7 @@ class Trace:
     labels: list[str] = field(default_factory=list)  # per-point text labels
     label_position: str = "top"  # top, bottom, left, right, center
     metadata: dict[str, Any] = field(default_factory=dict)  # per-point data for tooltips
+    role: str = ""  # semantic role for theme-neutral rendering: "control_limit", "centerline", "out_of_control", "spec_limit", "run_rule", "sigma_zone", "data"
 
 
 @dataclass
@@ -48,6 +49,7 @@ class ReferenceLine:
     width: float = 1.0
     label: str = ""
     label_position: str = "right"  # right, left, top, bottom
+    role: str = ""  # semantic role for theme-neutral rendering: "control_limit", "centerline", "out_of_control", "spec_limit", "run_rule", "sigma_zone", "data"
 
 
 @dataclass
@@ -59,6 +61,7 @@ class Zone:
     axis: str = "y"
     color: str = "rgba(255,0,0,0.1)"
     label: str = ""
+    role: str = ""  # semantic role for theme-neutral rendering: "control_limit", "centerline", "out_of_control", "spec_limit", "run_rule", "sigma_zone", "data"
 
 
 @dataclass
@@ -70,6 +73,7 @@ class Marker:
     size: float = 8
     symbol: str = "circle"  # circle, square, triangle, x
     label: str = ""
+    role: str = ""  # semantic role for theme-neutral rendering: "control_limit", "centerline", "out_of_control", "spec_limit", "run_rule", "sigma_zone", "data"
 
 
 @dataclass
