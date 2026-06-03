@@ -1,6 +1,14 @@
 """forgerender — the forge render contract (ChartSpec schema)."""
 
 from .spec import (
+    ROLE_CENTERLINE,
+    ROLE_CONTROL_LIMIT,
+    ROLE_DATA,
+    ROLE_OUT_OF_CONTROL,
+    ROLE_RUN_RULE,
+    ROLE_SIGMA_ZONE,
+    ROLE_SPEC_LIMIT,
+    ROLES,
     Annotation,
     Axis,
     ChartSpec,
@@ -20,4 +28,12 @@ __all__ = [
     "ReferenceLine",
     "Trace",
     "Zone",
+    "ROLES",
+    "ROLE_DATA",
+    "ROLE_CENTERLINE",
+    "ROLE_CONTROL_LIMIT",
+    "ROLE_OUT_OF_CONTROL",
+    "ROLE_SPEC_LIMIT",
+    "ROLE_RUN_RULE",
+    "ROLE_SIGMA_ZONE",
 ]
