@@ -17,6 +17,7 @@ from .spec import (
     Trace,
     Zone,
 )
+from .scene import Edge, Node, Scene
 from .dialect import (
     BEHAVIOR,
     CAPABILITY,
@@ -54,4 +55,7 @@ __all__ = [
     "ResultMixin",
     "result_registry",
     "speaks",
+    "Scene",
+    "Node",
+    "Edge",
 ]
