@@ -17,7 +17,16 @@ from .spec import (
     Trace,
     Zone,
 )
-from .dialect import CAPABILITY, FLOW, SPINE, Result, speaks
+from .dialect import (
+    BEHAVIOR,
+    CAPABILITY,
+    FLOW,
+    SPINE,
+    Result,
+    ResultMixin,
+    result_registry,
+    speaks,
+)
 
 __version__ = "0.1.0"
 
@@ -40,6 +49,9 @@ __all__ = [
     "SPINE",
     "CAPABILITY",
     "FLOW",
+    "BEHAVIOR",
     "Result",
+    "ResultMixin",
+    "result_registry",
     "speaks",
 ]
