@@ -39,3 +39,28 @@ def test_role_field_roundtrips():
 
 def test_role_defaults_empty():
     assert ChartSpec(traces=[Trace(x=[1], y=[2])]).to_dict()["traces"][0]["role"] == ""
+
+
+def test_role_constants_match_spellings():
+    from forgerender import (
+        ROLE_CENTERLINE, ROLE_CONTROL_LIMIT, ROLE_DATA, ROLE_OUT_OF_CONTROL,
+        ROLE_RUN_RULE, ROLE_SIGMA_ZONE, ROLE_SPEC_LIMIT,
+    )
+    assert ROLE_DATA == "data"
+    assert ROLE_CENTERLINE == "centerline"
+    assert ROLE_CONTROL_LIMIT == "control_limit"
+    assert ROLE_OUT_OF_CONTROL == "out_of_control"
+    assert ROLE_SPEC_LIMIT == "spec_limit"
+    assert ROLE_RUN_RULE == "run_rule"
+    assert ROLE_SIGMA_ZONE == "sigma_zone"
+
+
+def test_roles_frozenset_is_complete():
+    from forgerender import (
+        ROLE_CENTERLINE, ROLE_CONTROL_LIMIT, ROLE_DATA, ROLE_OUT_OF_CONTROL,
+        ROLE_RUN_RULE, ROLE_SIGMA_ZONE, ROLE_SPEC_LIMIT, ROLES,
+    )
+    assert ROLES == frozenset({
+        ROLE_DATA, ROLE_CENTERLINE, ROLE_CONTROL_LIMIT, ROLE_OUT_OF_CONTROL,
+        ROLE_SPEC_LIMIT, ROLE_RUN_RULE, ROLE_SIGMA_ZONE,
+    })

@@ -11,6 +11,22 @@ import json
 from dataclasses import dataclass, field
 from typing import Any
 
+# Semantic element roles for theme-neutral rendering. Producers (solvers) tag
+# elements with these; consumers (renderers) resolve them to colors. Defined
+# here, in the shared contract, so producer and consumer never drift on spelling.
+ROLE_DATA = "data"
+ROLE_CENTERLINE = "centerline"
+ROLE_CONTROL_LIMIT = "control_limit"
+ROLE_OUT_OF_CONTROL = "out_of_control"
+ROLE_SPEC_LIMIT = "spec_limit"
+ROLE_RUN_RULE = "run_rule"
+ROLE_SIGMA_ZONE = "sigma_zone"
+
+ROLES = frozenset({
+    ROLE_DATA, ROLE_CENTERLINE, ROLE_CONTROL_LIMIT, ROLE_OUT_OF_CONTROL,
+    ROLE_SPEC_LIMIT, ROLE_RUN_RULE, ROLE_SIGMA_ZONE,
+})
+
 
 @dataclass
 class Trace:
