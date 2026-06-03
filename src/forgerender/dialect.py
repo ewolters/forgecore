@@ -14,12 +14,23 @@ on spelling — the same single-source guarantee the ROLE_* constants provide.
 
 from __future__ import annotations
 
-from typing import Protocol, runtime_checkable
+from typing import Iterable, Protocol, runtime_checkable
 
 from .spec import ChartSpec
 
 SPINE = frozenset({"mean", "median", "std", "confidence", "title"})
 CAPABILITY = frozenset({"usl", "lsl", "cp", "cpk", "sigma", "dpmo"})
+FLOW = frozenset({"cycle_time", "arrival_rate", "service_rate", "servers", "utilization"})
+
+
+def speaks(view: Iterable[str], dialect: frozenset[str]) -> bool:
+    """True if a dialect-view carries only tokens the dialect defines.
+
+    A result speaks the subset of tokens it actually carries; this guards
+    against foreign or misspelled tokens, the same way the ROLE_* drift tests
+    pin producers to a subset of ROLES.
+    """
+    return set(view) <= dialect
 
 
 @runtime_checkable

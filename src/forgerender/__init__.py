@@ -17,7 +17,7 @@ from .spec import (
     Trace,
     Zone,
 )
-from .dialect import CAPABILITY, SPINE, Result
+from .dialect import CAPABILITY, FLOW, SPINE, Result, speaks
 
 __version__ = "0.1.0"
 
@@ -39,5 +39,7 @@ __all__ = [
     "ROLE_SIGMA_ZONE",
     "SPINE",
     "CAPABILITY",
+    "FLOW",
     "Result",
+    "speaks",
 ]
