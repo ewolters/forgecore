@@ -54,7 +54,7 @@ def result_registry() -> dict[str, type]:
     """Catalog of result types that inherit ResultMixin.
 
     Populated at import time via __init_subclass__, so completeness depends on
-    the caller having imported the relevant solver packages — forgerender does
+    the caller having imported the relevant solver packages — forgecore does
     not (and cannot) import its own consumers.
     """
     return dict(_REGISTRY)

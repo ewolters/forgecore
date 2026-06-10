@@ -2,8 +2,8 @@
 
 import pytest
 
-from forgerender import ChartSpec, ResultMixin, Scene
-from forgerender.dialect import _REGISTRY
+from forgecore import ChartSpec, ResultMixin, Scene
+from forgecore.dialect import _REGISTRY
 
 
 @pytest.fixture
@@ -35,12 +35,12 @@ class TestRegistryCollision:
 
 class TestSpecVersion:
     def test_chartspec_to_dict_carries_spec_version(self):
-        from forgerender import SPEC_VERSION
+        from forgecore import SPEC_VERSION
 
         assert ChartSpec().to_dict()["spec_version"] == SPEC_VERSION
 
     def test_scene_to_dict_carries_spec_version(self):
-        from forgerender import SPEC_VERSION
+        from forgecore import SPEC_VERSION
 
         assert Scene().to_dict()["spec_version"] == SPEC_VERSION
 

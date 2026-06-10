@@ -4,7 +4,7 @@ from dataclasses import dataclass
 
 import pytest
 
-from forgerender import (
+from forgecore import (
     BEHAVIOR,
     CAPABILITY,
     FLOW,

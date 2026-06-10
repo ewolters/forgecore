@@ -1,4 +1,4 @@
-"""forgerender — the forge render contract (ChartSpec schema)."""
+"""forgecore — the forge render contract (ChartSpec schema)."""
 
 from .spec import (
     ROLE_CENTERLINE,

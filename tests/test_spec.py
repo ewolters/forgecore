@@ -1,4 +1,4 @@
-from forgerender import (
+from forgecore import (
     Annotation, Axis, ChartSpec, Marker, ReferenceLine, Trace, Zone,
 )
 
@@ -42,7 +42,7 @@ def test_role_defaults_empty():
 
 
 def test_role_constants_match_spellings():
-    from forgerender import (
+    from forgecore import (
         ROLE_CENTERLINE, ROLE_CONTROL_LIMIT, ROLE_DATA, ROLE_OUT_OF_CONTROL,
         ROLE_RUN_RULE, ROLE_SIGMA_ZONE, ROLE_SPEC_LIMIT,
     )
@@ -56,7 +56,7 @@ def test_role_constants_match_spellings():
 
 
 def test_roles_frozenset_is_complete():
-    from forgerender import (
+    from forgecore import (
         ROLE_CENTERLINE, ROLE_CONTROL_LIMIT, ROLE_DATA, ROLE_OUT_OF_CONTROL,
         ROLE_RUN_RULE, ROLE_SIGMA_ZONE, ROLE_SPEC_LIMIT, ROLES,
     )

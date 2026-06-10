@@ -1,6 +1,6 @@
 """Tests for the Scene seam — the typed input graph, symmetric to ChartSpec."""
 
-from forgerender import Edge, Node, Scene
+from forgecore import Edge, Node, Scene
 
 
 def test_node_defaults_have_no_position_and_empty_attrs():
