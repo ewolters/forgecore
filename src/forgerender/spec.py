@@ -11,6 +11,11 @@ import json
 from dataclasses import dataclass, field
 from typing import Any
 
+# Wire-format version stamped into every to_dict() payload (ChartSpec + Scene).
+# Bump when the serialized schema changes shape, so JSON consumers (forgeviz.js,
+# the canvas editor) can detect what they're reading.
+SPEC_VERSION = "1"
+
 # Semantic element roles for theme-neutral rendering. Producers (solvers) tag
 # elements with these; consumers (renderers) resolve them to colors. Defined
 # here, in the shared contract, so producer and consumer never drift on spelling.
@@ -168,6 +173,7 @@ class ChartSpec:
         # plain dicts pass through. Filter None interactive.
         if d.get("interactive") is None:
             del d["interactive"]
+        d["spec_version"] = SPEC_VERSION
         return d
 
     def to_json(self, **kwargs) -> str:

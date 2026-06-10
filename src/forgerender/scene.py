@@ -15,6 +15,8 @@ from __future__ import annotations
 from dataclasses import asdict, dataclass, field
 from typing import Any, Optional
 
+from .spec import SPEC_VERSION
+
 
 @dataclass
 class Node:
@@ -53,4 +55,6 @@ class Scene:
         return None
 
     def to_dict(self) -> dict:
-        return asdict(self)
+        d = asdict(self)
+        d["spec_version"] = SPEC_VERSION
+        return d

@@ -71,20 +71,34 @@ class ResultMixin:
 
     def __init_subclass__(cls, **kwargs):
         super().__init_subclass__(**kwargs)
+        existing = _REGISTRY.get(cls.__name__)
+        if existing is not None and existing.__module__ != cls.__module__:
+            raise TypeError(
+                f"result name collision: {cls.__name__} is already registered by "
+                f"{existing.__module__}; refusing to overwrite from {cls.__module__}"
+            )
         _REGISTRY[cls.__name__] = cls
 
     def to_dict(self) -> dict:
         return asdict(self) if is_dataclass(self) else dict(vars(self))
 
-    def dialect(self) -> dict:
-        for name, vocab in _DIALECTS:
-            view_fn = getattr(self, name, None)
+    def dialect(self, name: str | None = None) -> dict:
+        """Return a dialect view. First match by default; `name` reaches a
+        specific dialect on results that speak more than one."""
+        if name is None:
+            candidates = _DIALECTS
+        else:
+            candidates = tuple((n, v) for n, v in _DIALECTS if n == name)
+            if not candidates:
+                raise ValueError(f"unknown dialect: {name}")
+        for dialect_name, vocab in candidates:
+            view_fn = getattr(self, dialect_name, None)
             if callable(view_fn):
                 view = view_fn()
                 if not speaks(view, vocab):
                     raise ValueError(
-                        f"{type(self).__name__}.{name}() speaks tokens outside {name}: "
-                        f"{set(view) - vocab}"
+                        f"{type(self).__name__}.{dialect_name}() speaks tokens outside "
+                        f"{dialect_name}: {set(view) - vocab}"
                     )
                 return view
         return {}
