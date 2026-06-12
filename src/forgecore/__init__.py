@@ -20,6 +20,7 @@ from .spec import (
 )
 from .scene import Edge, Node, Scene
 from .dataset import Dataset, Series
+from .trace import Event, EventLog
 from .dialect import (
     BEHAVIOR,
     CAPABILITY,
@@ -63,4 +64,6 @@ __all__ = [
     "Edge",
     "Dataset",
     "Series",
+    "Event",
+    "EventLog",
 ]
