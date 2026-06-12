@@ -124,3 +124,19 @@ def test_result_protocol_rejects_object_missing_to_render():
         summary = "ok"
 
     assert not isinstance(NoRender(), Result)
+
+
+def test_views_default_wraps_to_render():
+    class Single(ResultMixin):
+        def to_render(self) -> ChartSpec:
+            return ChartSpec(title="one")
+
+    views = Single().views()
+    assert [v.title for v in views] == ["one"]
+
+
+def test_views_is_empty_for_result_without_to_render():
+    class NoPortrait(ResultMixin):
+        pass
+
+    assert NoPortrait().views() == []

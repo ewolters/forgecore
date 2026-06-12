@@ -82,6 +82,17 @@ class ResultMixin:
     def to_dict(self) -> dict:
         return asdict(self) if is_dataclass(self) else dict(vars(self))
 
+    def views(self) -> list[ChartSpec]:
+        """The result's complete portrait: every ChartSpec it can draw from
+        its own fields. Defaults to the primary portrait; results whose full
+        picture is more than one chart (paired charts, panels) override this.
+        Must read only `self` — a view that needs outside data marks the
+        result type as incomplete, not the renderer."""
+        to_render = getattr(self, "to_render", None)
+        if callable(to_render):
+            return [to_render()]
+        return []
+
     def dialect(self, name: str | None = None) -> dict:
         """Return a dialect view. First match by default; `name` reaches a
         specific dialect on results that speak more than one."""
