@@ -19,6 +19,7 @@ from .spec import (
     Zone,
 )
 from .scene import Edge, Node, Scene
+from .dataset import Dataset, Series
 from .dialect import (
     BEHAVIOR,
     CAPABILITY,
@@ -60,4 +61,6 @@ __all__ = [
     "Scene",
     "Node",
     "Edge",
+    "Dataset",
+    "Series",
 ]
